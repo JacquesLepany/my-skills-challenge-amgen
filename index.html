@@ -1,0 +1,1806 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>My skills challenge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand: #0063C3;
+    --brand-2: #00BCE4;
+    --accent: #0063C3;
+    --paper: #F1F4F8;
+    --surface: #FFFFFF;
+    --ink: #14181F;
+    --ink-soft: #4F5B6A;
+    --border: #DCE3EC;
+    --blue-700: #004A94;
+    --blue-100: #E2EEFA;
+    --cyan-600: #007E9A;
+    --cyan-100: #DDF4FA;
+    --amber-600: #8F5A00;
+    --amber-500: #C98A12;
+    --amber-100: #FBEFD6;
+    --coral-500: #D14B3D;
+    --coral-100: #FBE3E0;
+    --ok-100: #E3F3E6;
+    --lvl0: #C7402F;
+    --lvl1: #C97C1E;
+    --lvl2: #5C9650;
+    --lvl3: #2C6B3F;
+    --shadow: 0 14px 40px -22px rgba(0, 60, 120, 0.45);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --accent: #4DA3F0;
+      --paper: #0A111C;
+      --surface: #121C2B;
+      --ink: #EDF2F8;
+      --ink-soft: #A3B2C6;
+      --border: #243247;
+      --blue-700: #7DB8F2;
+      --blue-100: #14263D;
+      --cyan-600: #4FD0EC;
+      --cyan-100: #0F2D38;
+      --amber-600: #E5B25A;
+      --amber-500: #E0A53C;
+      --amber-100: #33280F;
+      --coral-500: #F1786A;
+      --coral-100: #3A1F1C;
+      --ok-100: #12301E;
+      --lvl0: #E8695C;
+      --lvl1: #E0A34A;
+      --lvl2: #7FBF6B;
+      --lvl3: #4CA868;
+      --shadow: 0 14px 40px -22px rgba(0, 0, 0, 0.7);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: max(24px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+  }
+
+  h1, h2, h3, .display { font-family: 'Poppins', 'Inter', sans-serif; text-wrap: balance; }
+
+  .app {
+    width: 100%;
+    max-width: 460px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* ---------- En-tête ---------- */
+  .topbar { display: flex; align-items: center; gap: 10px; }
+  .brand-mark {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--brand), var(--brand-2));
+    color: #fff;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+  .brand-mark svg { width: 20px; height: 20px; }
+  .brand-text { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }
+  .brand-text strong { font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 600; }
+  .brand-text span { font-size: 12px; color: var(--ink-soft); }
+
+  /* Co-branding : pastille blanche dans les deux thèmes pour que les logos restent lisibles */
+  .partners {
+    margin-left: auto;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 5px 8px;
+  }
+  .partners img { display: block; }
+  .logo-amgen { height: 13px; width: auto; }
+  .logo-emf { height: 22px; width: 22px; border-radius: 5px; }
+  .partners .times { color: #8A94A3; font-size: 12px; line-height: 1; }
+
+  /* ---------- Choix de la vue ---------- */
+  .mode-switch {
+    display: flex;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 4px;
+    gap: 4px;
+  }
+  .mode-btn {
+    flex: 1;
+    min-width: 0;
+    min-height: 40px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+    border: none;
+    background: transparent;
+    color: var(--ink-soft);
+    padding: 6px 4px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .mode-btn.active { background: var(--brand); color: #fff; }
+  .mode-btn:focus-visible, .sub-tab:focus-visible, .btn-primary:focus-visible, .btn-ghost:focus-visible,
+  .choice:focus-visible, .row-card:focus-visible, .pick-row:focus-visible, .field-input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .sub-tabs { display: none; gap: 18px; border-bottom: 1px solid var(--border); }
+  .sub-tab {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    background: none;
+    border: none;
+    padding: 8px 2px 10px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .sub-tab.active { color: var(--ink); border-bottom-color: var(--accent); }
+
+  /* ---------- Progression ---------- */
+  .progress-row { display: none; gap: 6px; }
+  .progress-seg { flex: 1; height: 6px; border-radius: 999px; background: var(--border); overflow: hidden; }
+  .progress-seg > i {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--brand), var(--brand-2));
+    transition: width 0.4s ease;
+  }
+
+  /* ---------- Carte ---------- */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-height: 320px;
+    animation: cardIn 0.3s ease both;
+  }
+  @keyframes cardIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  .card-title { font-size: 19px; font-weight: 600; margin: 0; }
+  .note { font-size: 12px; color: var(--ink-soft); line-height: 1.5; margin: 0; }
+  .note.pull { margin-top: -8px; }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    align-self: flex-start;
+    max-width: 100%;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 999px;
+  }
+  .pill svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .pill.hue-blue { background: var(--blue-100); color: var(--blue-700); }
+  .pill.hue-cyan { background: var(--cyan-100); color: var(--cyan-600); }
+  .pill.hue-amber { background: var(--amber-100); color: var(--amber-600); }
+
+  .question { font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 600; line-height: 1.4; }
+
+  .choices { display: flex; flex-direction: column; gap: 10px; }
+  .choice {
+    text-align: left;
+    font-family: inherit;
+    font-size: 14.5px;
+    line-height: 1.4;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 13px 14px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .choice:hover:not(:disabled) { border-color: var(--accent); }
+  .choice:disabled { cursor: default; }
+  .choice.picked { background: var(--blue-100); border-color: var(--accent); font-weight: 600; }
+
+  .btn-primary {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    border-radius: 999px;
+    padding: 13px;
+    background: var(--brand);
+    color: #fff;
+    cursor: pointer;
+  }
+  .btn-primary:disabled { opacity: 0.4; cursor: default; }
+  .btn-ghost {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    border: 1.5px solid var(--border);
+    border-radius: 999px;
+    padding: 10px;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  /* ---------- Listes ---------- */
+  .list { display: flex; flex-direction: column; gap: 10px; }
+  .row-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 12px 14px;
+    text-align: left;
+    font: inherit;
+    color: var(--ink);
+    cursor: pointer;
+    transition: border-color 0.15s ease;
+  }
+  .row-card:hover { border-color: var(--accent); }
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: var(--blue-100);
+    color: var(--blue-700);
+    display: grid;
+    place-items: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .row-info { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 0; }
+  .row-info strong { font-size: 14.5px; }
+
+  .chips { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 5px; }
+  .chip {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 7px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .chip svg { width: 12px; height: 12px; flex-shrink: 0; }
+  .chip span { overflow: hidden; text-overflow: ellipsis; }
+  .lvl-0 { background: var(--lvl0); }
+  .lvl-1 { background: var(--lvl1); }
+  .lvl-2 { background: var(--lvl2); }
+  .lvl-3 { background: var(--lvl3); }
+
+  .level-legend { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 11px; color: var(--ink-soft); }
+  .level-legend span { display: inline-flex; align-items: center; gap: 5px; }
+  .swatch { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+
+  .strip {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .strip strong { color: var(--ink); }
+  .strip.inline { flex-direction: row; align-items: center; justify-content: space-between; gap: 10px; }
+  .strip.inline .btn-ghost { padding: 5px 12px; font-size: 11.5px; flex-shrink: 0; }
+
+  /* ---------- Formulaire ---------- */
+  .form { display: flex; flex-direction: column; gap: 14px; }
+  .field-label { display: flex; flex-direction: column; gap: 6px; font-size: 12px; font-weight: 600; color: var(--ink-soft); }
+  .field-input {
+    font-family: inherit;
+    font-size: 16px;
+    padding: 11px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    background: var(--paper);
+    color: var(--ink);
+    width: 100%;
+  }
+
+  /* ---------- Choix des axes ---------- */
+  .pick-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    cursor: pointer;
+    text-align: left;
+    font: inherit;
+    color: var(--ink);
+  }
+  .pick-row.selected { border-color: var(--accent); background: var(--blue-100); }
+  .pick-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+    background: var(--paper);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    color: var(--blue-700);
+  }
+  .pick-icon svg { width: 17px; height: 17px; }
+  .pick-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .pick-text strong { font-size: 13.5px; }
+  .pick-text span { font-size: 11.5px; color: var(--ink-soft); line-height: 1.4; }
+
+  /* ---------- Récapitulatif d'évaluation ---------- */
+  .ladder { display: flex; flex-direction: column; gap: 6px; }
+  .ladder-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .ladder-name { display: flex; align-items: center; gap: 8px; min-width: 0; }
+  .ladder-name svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--blue-700); }
+  .ladder-name strong { font-size: 13px; }
+  .delta { font-size: 11.5px; font-weight: 700; white-space: nowrap; color: var(--ink-soft); }
+  .delta.up { color: var(--lvl3); }
+  .ladder-track { display: flex; gap: 4px; }
+  .ladder-step { flex: 1; height: 8px; border-radius: 999px; background: var(--border); }
+  .ladder-step.kept { background: var(--accent); }
+  .ladder-step.gained { background: var(--lvl3); }
+  .ladder-label { font-size: 11px; color: var(--ink-soft); }
+
+  /* ---------- Directeur des ventes : pistes de progression ---------- */
+  .legend-row { display: flex; flex-wrap: wrap; gap: 8px 14px; }
+  .legend-item { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; color: var(--ink-soft); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+  .track-block { display: flex; flex-direction: column; gap: 6px; }
+  .track-head { display: flex; align-items: center; gap: 8px; }
+  .track-head svg { width: 16px; height: 16px; color: var(--blue-700); flex-shrink: 0; }
+  .track-head strong { font-size: 13px; }
+  .track-wrap { padding-inline: 16px; }
+  .track-markers { position: relative; height: 22px; }
+  .track-marker { position: absolute; bottom: 0; width: 20px; height: 20px; transform: translateX(-50%); color: var(--ink-soft); }
+  .track-marker svg { display: block; width: 100%; height: 100%; }
+  .track-line { position: relative; height: 2px; background: var(--border); border-radius: 2px; margin: 4px 0; }
+  .track-dots { position: relative; height: 28px; }
+  .track-dot {
+    position: absolute;
+    top: 13px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    place-items: center;
+    font-size: 8px;
+    font-weight: 700;
+    color: #fff;
+    border: 2px solid var(--surface);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  }
+  .track-labels { position: relative; height: 14px; }
+  .track-label { position: absolute; top: 0; transform: translateX(-50%); font-size: 9.5px; color: var(--ink-soft); white-space: nowrap; }
+
+  /* ---------- Ressources ---------- */
+  .res { border: 1px solid var(--border); border-radius: 16px; background: var(--surface); overflow: hidden; }
+  .res summary {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    cursor: pointer;
+  }
+  .res summary::-webkit-details-marker { display: none; }
+  .res summary::after { content: '+'; margin-left: auto; padding-left: 8px; font-size: 20px; line-height: 1; color: var(--ink-soft); }
+  .res[open] summary::after { content: '\2212'; }
+  .res summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .res-body { padding: 0 14px 16px; display: flex; flex-direction: column; gap: 16px; }
+  .res-body h3 { font-size: 12.5px; font-weight: 600; margin: 0 0 6px; color: var(--blue-700); letter-spacing: 0.01em; }
+  .res-body p { margin: 0; font-size: 13.5px; line-height: 1.55; }
+  .res-body ul, .res-body ol { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; font-size: 13.5px; line-height: 1.5; }
+  .lvl-row { display: grid; grid-template-columns: 82px 1fr; gap: 10px; align-items: start; font-size: 13px; line-height: 1.5; }
+  .lvl-row .chip { justify-content: center; font-size: 10.5px; padding: 4px 6px; }
+  .quote { padding: 10px 12px; border-radius: 12px; font-size: 13px; line-height: 1.5; }
+  .quote small { display: block; font-size: 11px; font-weight: 600; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-soft); }
+  .quote.avoid { background: var(--coral-100); }
+  .quote.prefer { background: var(--ok-100); }
+  .quotes { display: flex; flex-direction: column; gap: 8px; }
+
+  /* ---------- Pied de page de démonstration ---------- */
+  .demo-footer { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 4px 0 8px; text-align: center; }
+  .link-btn { background: none; border: none; color: var(--ink-soft); font: inherit; font-size: 12px; text-decoration: underline; cursor: pointer; padding: 8px; }
+  .link-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  @media (max-width: 380px) {
+    .mode-btn { font-size: 11px; padding: 6px 2px; }
+  }
+
+  #confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 50; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card { animation: none; }
+    .progress-seg > i { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand-mark" id="brandMark"></div>
+    <div class="brand-text">
+      <strong>My skills challenge</strong>
+      <span id="brandSub">Mon auto-diagnostic de compétences</span>
+    </div>
+    <div class="partners" role="group" aria-label="Amgen et EMF">
+      <img class="logo-amgen" alt="Amgen" src="data:image/png;base64,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">
+      <span class="times" aria-hidden="true">&times;</span>
+      <img class="logo-emf" alt="EMF" src="data:image/png;base64,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">
+    </div>
+  </header>
+
+  <nav class="mode-switch" aria-label="Choix de la vue">
+    <button class="mode-btn active" id="btnModeDelegate" type="button">Délégué</button>
+    <button class="mode-btn" id="btnModeRegional" type="button">Directeur régional</button>
+    <button class="mode-btn" id="btnModeSales" type="button">Directeur des ventes</button>
+    <button class="mode-btn" id="btnModeResources" type="button">Ressources</button>
+  </nav>
+
+  <main id="delegateView">
+    <div class="progress-row" id="delegateProgress" style="margin-bottom:16px;"></div>
+    <div id="delegateStage"></div>
+  </main>
+
+  <main id="regionalView" hidden>
+    <div class="sub-tabs" id="regionalTabs" style="margin-bottom:16px;">
+      <button class="sub-tab active" id="btnTabTeam" type="button">Mon équipe</button>
+      <button class="sub-tab" id="btnTabProfile" type="button">Profil d'équipe</button>
+    </div>
+    <div class="progress-row" id="regionalProgress" style="margin-bottom:16px;"></div>
+    <div id="regionalStage"></div>
+  </main>
+
+  <main id="salesView" hidden>
+    <div id="salesStage"></div>
+  </main>
+
+  <main id="resourcesView" hidden>
+    <div id="resourcesStage"></div>
+  </main>
+
+  <footer class="demo-footer" id="demoFooter"></footer>
+</div>
+
+<canvas id="confetti" aria-hidden="true"></canvas>
+
+<script>
+(function () {
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var LEVEL_LABEL = ['Débutant', 'Autonome', 'Confirmé', 'Expert'];
+  var STORE_LEVELS = 'amgenSC_levels_';
+  var STORE_ONBOARD = 'amgenSC_onboarded_';
+
+  function $(id) { return document.getElementById(id); }
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text !== undefined) n.textContent = text;
+    return n;
+  }
+  function clearNode(n) { while (n.firstChild) n.removeChild(n.firstChild); }
+  function initialsOf(name) { return name.split(' ').map(function (w) { return w.charAt(0); }).join(''); }
+  function fmtLevel(v) { return (v + 1).toFixed(1); } // affichage 1-4, indices internes 0-3
+
+  /* ============================================================
+     Pictogrammes (traits simples)
+  ============================================================ */
+  function svg(inner) {
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' + inner + '</svg>';
+  }
+  var ICONS = {
+    target: svg('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/>'),
+    question: svg('<path d="M4 5h16v11H11l-5 4v-4H4z"/><path d="M10.2 9.3a1.9 1.9 0 1 1 2.7 1.7c-.6.3-.9.7-.9 1.3"/><circle cx="12" cy="14.1" r=".7" fill="currentColor" stroke="none"/>'),
+    bulb: svg('<path d="M9.5 18h5M10.5 21h3"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.7.5 1 1.2 1 2.1h5c0-.9.3-1.6 1-2.1A6 6 0 0 0 12 3z"/>'),
+    check: svg('<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16.3 9.5"/>'),
+    loop: svg('<path d="M20 12a8 8 0 1 1-2.5-5.8"/><path d="M20 4v4.5h-4.5"/>'),
+    trend: svg('<path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/>'),
+    lock: svg('<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>')
+  };
+  function barsIcon(n) {
+    var heights = [5, 9, 13, 17], out = '';
+    for (var i = 0; i < 4; i++) {
+      out += '<rect x="' + (3 + i * 5) + '" y="' + (21 - heights[i]) + '" width="3.2" height="' + heights[i] + '" rx="1" fill="currentColor"' + (i < n ? '' : ' opacity="0.22"') + '/>';
+    }
+    return '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' + out + '</svg>';
+  }
+  $('brandMark').innerHTML = ICONS.trend;
+
+  /* ============================================================
+     Les 5 axes de compétences
+  ============================================================ */
+  var SKILLS = [
+    { key: 'planning', label: 'Behavior-Based Pre-Call Planning', short: 'Pre-Call', icon: 'target', hue: 'hue-blue',
+      desc: 'Préparer la visite à partir du changement de comportement attendu chez le client.' },
+    { key: 'hiq', label: 'High Impact Questions (HIQ)', short: 'HIQ', icon: 'question', hue: 'hue-cyan',
+      desc: 'Utiliser des questions à fort impact pour générer un véritable dialogue.' },
+    { key: 'exchange', label: 'Impactful Exchange of Information', short: 'Exchange', icon: 'bulb', hue: 'hue-amber',
+      desc: 'Fournir les informations les plus pertinentes au bon moment, de façon claire et mémorable.' },
+    { key: 'commitment', label: 'Gaining Commitment for Action', short: 'Commitment', icon: 'check', hue: 'hue-blue',
+      desc: "Obtenir un engagement concret du client à l'issue de l'échange." },
+    { key: 'postcall', label: 'Post-Call Reflection & Planning', short: 'Post-Call', icon: 'loop', hue: 'hue-cyan',
+      desc: "Analyser l'impact de l'interaction et préparer les actions suivantes." }
+  ];
+  var SKILL_BY_KEY = {};
+  SKILLS.forEach(function (s) { SKILL_BY_KEY[s.key] = s; });
+
+  /* ============================================================
+     Banque de situations : 8 par axe (2 par niveau de technicité).
+     Chaque réponse décrit un comportement, de Débutant (index 0)
+     à Expert (index 3). Syntaxe {3e personne|1re personne} pour
+     les mots qui changent : le directeur régional lit "le délégué…",
+     le délégué lit les mêmes situations à la première personne.
+  ============================================================ */
+  var SITUATIONS = {
+    planning: [
+      { t: 0, c: "Avant une visite, sur {son|mon} objectif de rencontre", o: [
+        "N'{a|ai} pas d'objectif précis et improvise sur place",
+        "Prépare le contenu à présenter (messages, documents) sans objectif défini",
+        "{Se fixe|Me fixe} un objectif de visite clair, centré sur ce que le client doit faire",
+        "{Définit|Définis} le changement de comportement attendu du client et le formule de façon observable" ] },
+      { t: 0, c: "Sur {sa|ma} connaissance du client avant la visite", o: [
+        "Ne consulte pas l'historique du client avant d'arriver",
+        "{Relit|Relis} l'historique des visites passées sans en tirer d'enseignement",
+        "Identifie le comportement actuel du client et ce qui le motive",
+        "Cartographie le comportement actuel, les freins et les leviers du client avant la visite" ] },
+      { t: 1, c: "Pour définir {son|mon} objectif de visite", o: [
+        "{Se limite|Me limite} à vouloir présenter le produit",
+        "Fixe un objectif d'activité (nombre de messages, de documents laissés)",
+        "Fixe un objectif exprimé en comportement attendu du client après la visite",
+        "Fixe un objectif de changement de comportement mesurable, relié au parcours du client sur plusieurs visites" ] },
+      { t: 1, c: "Avant la visite, sur les obstacles possibles chez le client", o: [
+        "{N'y réfléchit|N'y réfléchis} pas",
+        "Anticipe une objection générale, toujours la même",
+        "Identifie les freins probables à ce changement de comportement chez ce client",
+        "Hiérarchise les freins et prépare une réponse adaptée à chacun" ] },
+      { t: 2, c: "Pour préparer le déroulé de l'échange", o: [
+        "Improvise l'enchaînement sur place",
+        "Applique un plan type identique pour tous les clients",
+        "{Construit|Construis} un déroulé qui sert l'objectif de changement de comportement",
+        "{Construit|Construis} un déroulé avec des scénarios alternatifs selon les réactions probables du client" ] },
+      { t: 2, c: "Sur le choix du message et des supports à utiliser", o: [
+        "Emporte tous les supports disponibles sans choisir",
+        "{Choisit|Choisis} les supports habituels de l'équipe",
+        "Sélectionne le message et les supports qui répondent au frein identifié",
+        "Sélectionne un message principal et des supports de repli, selon le niveau d'adoption du client" ] },
+      { t: 3, c: "Quand le client n'évolue pas après plusieurs visites", o: [
+        "Continue exactement comme avant",
+        "Change de supports sans revoir {son|mon} objectif",
+        "{Revoit|Revois} l'objectif et le comportement ciblé pour la visite suivante",
+        "Réexamine {ses|mes} hypothèses sur le client, ajuste l'objectif et teste une nouvelle approche" ] },
+      { t: 3, c: "Sur la préparation des visites de {son|mon} portefeuille de clients prioritaires", o: [
+        "Prépare uniquement les visites du jour",
+        "Prépare chaque visite séparément, sans lien entre elles",
+        "Relie la préparation de chaque visite au comportement cible défini pour le client",
+        "Planifie une séquence de visites avec un comportement cible intermédiaire à chaque étape" ] }
+    ],
+    hiq: [
+      { t: 0, c: "Pour ouvrir la discussion avec le client", o: [
+        "Pose surtout des questions fermées (oui/non)",
+        "Pose des questions ouvertes très générales",
+        "Pose des questions ouvertes liées à la pratique du client",
+        "Pose une première question ouverte qui amène le client à décrire ses propres enjeux" ] },
+      { t: 0, c: "Sur l'équilibre entre parler et questionner", o: [
+        "Parle la plus grande partie du temps",
+        "Pose quelques questions puis {reprend|reprends} vite la parole",
+        "Alterne régulièrement questions et informations",
+        "Laisse le client parler la majeure partie du temps grâce à {ses|mes} questions" ] },
+      { t: 1, c: "Quand le client répond de façon évasive", o: [
+        "Passe à la question suivante",
+        "Répète la même question autrement",
+        "Relance par une question de clarification",
+        "Relance en {s'appuyant|m'appuyant} sur un élément précis de la réponse pour ouvrir une nouvelle piste" ] },
+      { t: 1, c: "Sur la préparation de {ses|mes} questions avant la visite", o: [
+        "Improvise {ses|mes} questions sur le moment",
+        "Utilise une liste de questions identique pour tous les clients",
+        "Prépare des questions adaptées au profil du client",
+        "Prépare des questions pour tester une hypothèse précise sur le comportement du client" ] },
+      { t: 2, c: "Pour comprendre ce qui motive le client", o: [
+        "Suppose les motivations sans les vérifier",
+        "Demande ce que le client pense du produit",
+        "Explore les motivations du client dans sa pratique",
+        "Explore les motivations puis {fait|fais} expliciter au client l'écart entre sa pratique actuelle et ce qu'il souhaite" ] },
+      { t: 2, c: "Sur les questions qui font réfléchir le client", o: [
+        "N'en pose pas",
+        "En pose parfois, de façon intuitive",
+        "En pose régulièrement pour faire réfléchir le client à sa pratique",
+        "Utilise des questions qui amènent le client à formuler lui-même l'intérêt de changer" ] },
+      { t: 3, c: "Face à un client sceptique ou réservé", o: [
+        "{Défend|Défends} {son|mon} point de vue",
+        "Répète {ses|mes} arguments en insistant",
+        "Pose une question ouverte pour comprendre la réserve",
+        "Enchaîne des questions qui explorent la réserve puis ses conséquences, jusqu'à ce que le client en tire lui-même une conclusion" ] },
+      { t: 3, c: "Sur l'enchaînement des questions pendant l'échange", o: [
+        "Pose les questions dans un ordre figé, sans écouter les réponses",
+        "Déroule un questionnaire préparé en {s'adaptant|m'adaptant} peu",
+        "Adapte l'ordre des questions aux réponses du client",
+        "{Construit|Construis} chaque question à partir de la réponse précédente pour approfondir progressivement" ] }
+    ],
+    exchange: [
+      { t: 0, c: "Pour présenter les informations clés", o: [
+        "Présente toutes les informations disponibles",
+        "Présente les informations dans l'ordre du support",
+        "Sélectionne les informations utiles pour ce client",
+        "Sélectionne peu d'informations, choisies selon ce que le client vient de dire" ] },
+      { t: 0, c: "Sur la clarté du message", o: [
+        "Utilise un langage technique ou des formulations confuses",
+        "Explique correctement mais avec beaucoup de détails",
+        "Formule des messages courts et clairs, avec un bénéfice pour le client",
+        "Formule un message en une phrase que le client peut répéter facilement" ] },
+      { t: 1, c: "Sur le moment choisi pour apporter l'information", o: [
+        "Apporte l'information dès le début, avant d'avoir écouté le client",
+        "Apporte l'information quand le support le prévoit",
+        "Apporte l'information après avoir identifié un besoin du client",
+        "Apporte l'information au moment précis où le client exprime le besoin ou la réserve correspondants" ] },
+      { t: 1, c: "Pour présenter des données (études, chiffres)", o: [
+        "Enchaîne les chiffres sans les relier au client",
+        "Présente les données clés avec leur source",
+        "Relie chaque donnée à une situation que le client rencontre",
+        "{Choisit|Choisis} la donnée qui répond à la préoccupation du client et la relie aux patients du client" ] },
+      { t: 2, c: "Sur l'usage d'exemples ou d'histoires pour rendre le message mémorable", o: [
+        "N'en utilise pas",
+        "Utilise un exemple générique",
+        "Utilise un exemple concret proche de la pratique du client",
+        "Adapte l'exemple en direct à la situation que le client vient de décrire" ] },
+      { t: 2, c: "Quand le client interrompt ou pose une question pendant la présentation", o: [
+        "{Poursuit|Poursuis} {sa|ma} présentation sans {s'arrêter|m'arrêter}",
+        "{Répond|Réponds} brièvement puis {reprend|reprends} {son|mon} plan",
+        "{S'arrête|M'arrête}, {répond|réponds} précisément et vérifie que la réponse convient",
+        "{S'appuie|M'appuie} sur la question pour réorienter l'échange vers ce qui compte le plus pour le client" ] },
+      { t: 3, c: "Pour vérifier que le message a bien été compris et retenu", o: [
+        "Ne vérifie pas",
+        "Demande « C'est clair ? » en fin de présentation",
+        "Demande au client de reformuler ce qu'il retient",
+        "{Fait|Fais} reformuler le message par le client puis relie sa reformulation à l'action attendue" ] },
+      { t: 3, c: "Face à une question dont la réponse n'est pas maîtrisée", o: [
+        "Improvise une réponse sans certitude qu'elle soit exacte",
+        "Renvoie vers de la documentation sans reformuler",
+        "{Reconnaît|Reconnais} ne pas avoir la réponse et {s'engage|m'engage} à revenir avec une réponse précise",
+        "{Reconnaît|Reconnais} ne pas avoir la réponse, propose une source fiable et planifie la suite avec le client" ] }
+    ],
+    commitment: [
+      { t: 0, c: "À la fin de l'échange", o: [
+        "Quitte le client sans conclure",
+        "Remercie le client sans proposer d'action",
+        "Résume les points clés et propose une action",
+        "Résume ce que le client a retenu et {obtient|obtiens} son accord sur une action précise" ] },
+      { t: 0, c: "Sur la proposition d'une prochaine étape", o: [
+        "Ne propose aucune prochaine étape",
+        "Propose une suite vague (« on se revoit bientôt »)",
+        "Propose une prochaine étape précise et datée",
+        "Propose une prochaine étape précise, datée et reliée au comportement attendu du client" ] },
+      { t: 1, c: "Sur la nature de l'engagement demandé au client", o: [
+        "Ne demande rien de concret",
+        "Demande une action très large (« essayez le produit »)",
+        "Demande une action concrète que le client peut réaliser rapidement",
+        "Demande une action concrète adaptée au niveau d'adoption du client et en fixe les conditions avec lui" ] },
+      { t: 1, c: "Quand le client donne un accord de principe", o: [
+        "Considère que c'est suffisant et {conclut|conclus}",
+        "Remercie et note l'accord sans le préciser",
+        "Précise avec le client ce qui sera fait et quand",
+        "{Fait|Fais} préciser par le client ce qu'il fera, quand, et comment le suivi sera assuré" ] },
+      { t: 2, c: "Quand le client hésite à s'engager", o: [
+        "Abandonne la demande",
+        "Insiste en répétant la demande",
+        "Explore la réserve du client puis adapte la demande",
+        "Explore la réserve, la traite avec le client et propose un engagement plus petit mais réaliste" ] },
+      { t: 2, c: "Sur la formulation de la demande d'engagement", o: [
+        "Formule la demande de façon floue ou en {s'excusant|m'excusant}",
+        "Formule la demande clairement mais sans lien avec l'objectif de la visite",
+        "Formule la demande clairement, en lien avec l'objectif de la visite",
+        "Formule la demande en la reliant au bénéfice que le client a lui-même exprimé" ] },
+      { t: 3, c: "Quand le client refuse de s'engager", o: [
+        "Termine l'échange sans chercher à comprendre",
+        "Accepte le refus et passe à autre chose",
+        "Cherche à comprendre le motif du refus",
+        "Utilise le refus comme information pour ajuster l'objectif et planifier la visite suivante" ] },
+      { t: 3, c: "Sur la façon de sécuriser l'engagement obtenu", o: [
+        "Ne {fait|fais} aucun suivi",
+        "Envoie un message générique après la visite",
+        "Confirme l'engagement par écrit au client avec la date convenue",
+        "Confirme l'engagement par écrit, {prévoit|prévois} un point d'étape et {s'en sert|m'en sers} pour préparer la visite suivante" ] }
+    ],
+    postcall: [
+      { t: 0, c: "Après la visite", o: [
+        "Passe directement à la visite suivante sans prendre de recul",
+        "Note ce qui a été fait (compte rendu administratif)",
+        "Note ce qui s'est dit et la réaction du client",
+        "Note le comportement observé chez le client et le compare à l'objectif visé" ] },
+      { t: 0, c: "Sur le compte rendu de la visite", o: [
+        "Complète le compte rendu tardivement ou de façon minimale",
+        "Complète le compte rendu avec les faits principaux",
+        "Complète un compte rendu qui précise la réaction du client et la suite prévue",
+        "Complète un compte rendu exploitable par d'autres : comportement observé, engagement obtenu, prochaine étape" ] },
+      { t: 1, c: "Pour évaluer l'impact de l'échange", o: [
+        "Juge la visite à l'impression générale",
+        "Juge la visite à l'ambiance de l'échange",
+        "Compare le résultat obtenu à l'objectif de comportement fixé avant la visite",
+        "Compare le résultat à l'objectif, identifie ce qui a fait la différence et en tire un enseignement" ] },
+      { t: 1, c: "Sur ce qui a bien ou moins bien fonctionné", o: [
+        "{Ne s'interroge|Ne m'interroge} pas dessus",
+        "Identifie ce qui n'a pas fonctionné sans chercher la cause",
+        "Identifie une réussite et un point d'amélioration précis",
+        "Identifie réussites et points d'amélioration, avec les causes probables" ] },
+      { t: 2, c: "Pour préparer la visite suivante", o: [
+        "{Repart|Repars} du même plan",
+        "{Prévoit|Prévois} la date de la prochaine visite",
+        "Prépare un nouvel objectif à partir du résultat obtenu",
+        "Prépare un nouvel objectif et ajuste les questions et le message selon la réaction du client" ] },
+      { t: 2, c: "Sur l'usage des retours reçus (collègue, directeur régional, client)", o: [
+        "Évite ou minimise les retours",
+        "Écoute les retours sans les appliquer",
+        "Applique un retour reçu à la visite suivante",
+        "Sollicite des retours et les transforme en actions planifiées" ] },
+      { t: 3, c: "Sur le suivi des progrès dans la durée", o: [
+        "Ne mesure pas {son|mon} évolution",
+        "{Fait|Fais} le point de temps en temps, de façon informelle",
+        "{Fait|Fais} un point régulier sur {ses|mes} points forts et {ses|mes} axes de progrès",
+        "{Se fixe|Me fixe} des objectifs de progrès et mesure leur évolution visite après visite" ] },
+      { t: 3, c: "Sur le partage des enseignements avec l'équipe", o: [
+        "Garde les enseignements pour {lui|moi}",
+        "Partage les enseignements uniquement si on {le lui|me le} demande",
+        "Partage ce qui a fonctionné avec {ses|mes} collègues",
+        "Partage ce qui a fonctionné et teste avec l'équipe des idées pour progresser ensemble" ] }
+    ]
+  };
+
+  function pick(str, first) {
+    return str.replace(/\{([^|}]*)\|([^}]*)\}/g, function (m, a, b) { return first ? b : a; });
+  }
+  function stemText(q, first) {
+    return first ? pick(q.c, true) + ' :' : pick(q.c, false) + ', le délégué…';
+  }
+  function optionText(o, first) {
+    var s = pick(o, first);
+    if (!first) return s;
+    s = s.charAt(0).toLowerCase() + s.slice(1);
+    return (/^[aeiouyàâäéèêëîïôöùûüh]/.test(s) ? "J'" : 'Je ') + s;
+  }
+
+  // 6 questions par axe lors d'une visite duo, choisies dans la banque de 8
+  // selon le niveau actuel : plus le délégué progresse, plus elles sont techniques.
+  function questionsFor(skillKey, level) {
+    var start = Math.max(0, Math.min(2, 2 * level - 1));
+    return SITUATIONS[skillKey].slice(start, start + 6);
+  }
+  // Auto-diagnostic : une situation par niveau de technicité et par axe.
+  function onboardingQuestionsFor(skillKey) {
+    return [0, 2, 4, 6].map(function (i) { return SITUATIONS[skillKey][i]; });
+  }
+
+  /* ============================================================
+     Organisation de démonstration : 5 directeurs régionaux,
+     tous les délégués démarrent au niveau Débutant.
+  ============================================================ */
+  function zeros() { var o = {}; SKILLS.forEach(function (s) { o[s.key] = 0; }); return o; }
+  function member(id, name) { return { id: id, name: name, baseline: zeros() }; }
+
+  var DIRECTORS = [
+    { id: 'dr1', name: 'Camille Roussel', color: '#0063C3', crew: [
+      member('claire', 'Claire Dubois'), member('karim', 'Karim Haddad'), member('lea', 'Léa Bonnet'),
+      member('thomas', 'Thomas Faure'), member('nora', 'Nora Idrissi') ] },
+    { id: 'dr2', name: 'Julien Perrot', color: '#007E9A', crew: [
+      member('dr2_elise', 'Élise Fournier'), member('dr2_bastien', 'Bastien Roy'), member('dr2_manon', 'Manon Petit') ] },
+    { id: 'dr3', name: 'Sophie Lambert', color: '#B97A0C', crew: [
+      member('dr3_youssef', 'Youssef Amrani'), member('dr3_aline', 'Aline Moreau'), member('dr3_hugo', 'Hugo Lefebvre') ] },
+    { id: 'dr4', name: 'Marc Girard', color: '#C7402F', crew: [
+      member('dr4_lena', 'Léna Faure'), member('dr4_theo', 'Théo Bernard'), member('dr4_chloe', 'Chloé Dumas') ] },
+    { id: 'dr5', name: 'Inès Chevalier', color: '#6B5CA5', crew: [
+      member('dr5_adam', 'Adam Roche'), member('dr5_sarah', 'Sarah Blanchard'), member('dr5_nathan', 'Nathan Perret') ] }
+  ];
+
+  /* ============================================================
+     Stockage local (démo : par navigateur, aucune donnée serveur)
+  ============================================================ */
+  function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+
+  function getLevels(m) {
+    var levels = Object.assign({}, m.baseline);
+    var raw = lsGet(STORE_LEVELS + m.id);
+    if (raw) {
+      try {
+        var stored = JSON.parse(raw);
+        SKILLS.forEach(function (s) { if (typeof stored[s.key] === 'number') levels[s.key] = stored[s.key]; });
+      } catch (e) {}
+    }
+    return levels;
+  }
+  function saveLevels(id, levels) { lsSet(STORE_LEVELS + id, JSON.stringify(levels)); }
+  function isOnboarded(id) { return lsGet(STORE_ONBOARD + id) === 'true'; }
+  function setOnboarded(id) { lsSet(STORE_ONBOARD + id, 'true'); }
+
+  function crewAverages(crew) {
+    return SKILLS.map(function (s) {
+      var sum = 0;
+      crew.forEach(function (m) { sum += getLevels(m)[s.key]; });
+      return sum / crew.length;
+    });
+  }
+
+  /* ============================================================
+     Briques d'interface partagées
+  ============================================================ */
+  function showCard(stage, card) {
+    clearNode(stage);
+    stage.appendChild(card);
+    var top = stage.getBoundingClientRect().top;
+    if (top < 0) window.scrollBy(0, top - 12);
+  }
+  function setProgress(row, n) {
+    clearNode(row);
+    for (var i = 0; i < n; i++) {
+      var seg = el('div', 'progress-seg');
+      seg.appendChild(el('i'));
+      row.appendChild(seg);
+    }
+    row.style.gap = n > 12 ? '3px' : '6px';
+    row.style.display = 'flex';
+  }
+  function fillProgress(row, step) {
+    var bars = row.querySelectorAll('.progress-seg > i');
+    for (var i = 0; i < bars.length; i++) bars[i].style.width = i < step ? '100%' : '0';
+  }
+  function hideProgress(row) { row.style.display = 'none'; }
+
+  function skillPill(skillKey) {
+    var s = SKILL_BY_KEY[skillKey];
+    var p = el('div', 'pill ' + s.hue);
+    p.innerHTML = ICONS[s.icon];
+    p.appendChild(el('span', '', s.label));
+    return p;
+  }
+  function levelChips(levels) {
+    var grid = el('div', 'chips');
+    SKILLS.forEach(function (s) {
+      var lvl = levels[s.key];
+      var chip = el('span', 'chip lvl-' + lvl);
+      chip.title = s.label + ' : ' + LEVEL_LABEL[lvl];
+      chip.innerHTML = ICONS[s.icon];
+      chip.appendChild(el('span', '', s.short));
+      grid.appendChild(chip);
+    });
+    return grid;
+  }
+  function levelLegend() {
+    var row = el('div', 'level-legend');
+    LEVEL_LABEL.forEach(function (label, i) {
+      var item = el('span');
+      var sw = el('i', 'swatch lvl-' + i);
+      item.appendChild(sw);
+      item.appendChild(document.createTextNode(label));
+      row.appendChild(item);
+    });
+    return row;
+  }
+  function who(name, onChange) {
+    var strip = el('div', 'strip inline');
+    var label = el('span');
+    label.appendChild(document.createTextNode('Connecté en tant que '));
+    label.appendChild(el('strong', '', name));
+    var btn = el('button', 'btn-ghost', 'Changer');
+    btn.type = 'button';
+    btn.addEventListener('click', onChange);
+    strip.appendChild(label);
+    strip.appendChild(btn);
+    return strip;
+  }
+  function titleBlock(card, title, note) {
+    card.appendChild(el('h2', 'card-title display', title));
+    if (note) card.appendChild(el('p', 'note pull', note));
+  }
+  function personRow(name, subtitleNode, color, onClick) {
+    var btn = el('button', 'row-card');
+    btn.type = 'button';
+    var avatar = el('div', 'avatar', initialsOf(name));
+    if (color) { avatar.style.background = color; avatar.style.color = '#fff'; }
+    var info = el('div', 'row-info');
+    info.appendChild(el('strong', '', name));
+    info.appendChild(subtitleNode);
+    btn.appendChild(avatar);
+    btn.appendChild(info);
+    btn.addEventListener('click', onClick);
+    return btn;
+  }
+
+  // Carte question réutilisée par l'auto-diagnostic (1re personne) et par
+  // l'évaluation après duo (3e personne).
+  function questionCard(skillKey, q, first, note, onPick) {
+    var card = el('div', 'card');
+    card.appendChild(skillPill(skillKey));
+    if (note) card.appendChild(el('p', 'note', note));
+    card.appendChild(el('div', 'question', stemText(q, first)));
+    var wrap = el('div', 'choices');
+    q.o.forEach(function (text, levelIndex) {
+      var btn = el('button', 'choice', optionText(text, first));
+      btn.type = 'button';
+      btn.addEventListener('click', function () {
+        Array.prototype.forEach.call(wrap.children, function (b) { b.disabled = true; });
+        btn.classList.add('picked');
+        setTimeout(function () { onPick(levelIndex); }, 260);
+      });
+      wrap.appendChild(btn);
+    });
+    card.appendChild(wrap);
+    return card;
+  }
+  function averageLevel(values) {
+    var sum = 0;
+    values.forEach(function (v) { sum += v; });
+    return Math.min(3, Math.max(0, Math.round(sum / values.length)));
+  }
+
+  /* ============================================================
+     Choix de la vue
+  ============================================================ */
+  var views = { delegate: $('delegateView'), regional: $('regionalView'), sales: $('salesView'), resources: $('resourcesView') };
+  var buttons = { delegate: $('btnModeDelegate'), regional: $('btnModeRegional'), sales: $('btnModeSales'), resources: $('btnModeResources') };
+  var brandSub = $('brandSub');
+  var SUBTITLES = {
+    delegate: 'Mon auto-diagnostic de compétences',
+    regional: 'Suivi de mon équipe après chaque visite duo',
+    sales: 'Vue nationale de mes équipes régionales',
+    resources: 'Repères théoriques sur les 5 axes'
+  };
+
+  function setMode(mode) {
+    Object.keys(views).forEach(function (k) {
+      views[k].hidden = k !== mode;
+      buttons[k].classList.toggle('active', k === mode);
+    });
+    brandSub.textContent = SUBTITLES[mode];
+    if (mode === 'delegate') { if (currentDelegate) renderDelegateHome(); else renderDelegatePicker(); }
+    if (mode === 'regional') { if (currentDirector) renderTeam(); else renderDirectorPicker(); }
+    if (mode === 'sales') renderSalesBoard();
+    if (mode === 'resources') renderResources();
+  }
+  buttons.delegate.addEventListener('click', function () { setMode('delegate'); });
+  buttons.regional.addEventListener('click', function () { setMode('regional'); });
+  buttons.sales.addEventListener('click', function () { setMode('sales'); });
+  buttons.resources.addEventListener('click', function () { setMode('resources'); });
+
+  /* ============================================================
+     VUE DÉLÉGUÉ — auto-diagnostic, une seule fois, puis verrouillé
+  ============================================================ */
+  var delegateStage = $('delegateStage');
+  var delegateProgress = $('delegateProgress');
+  var currentDelegate = null; // { member, director }
+
+  function renderDelegatePicker() {
+    hideProgress(delegateProgress);
+    var card = el('div', 'card');
+    titleBlock(card, 'Qui es-tu ?', 'Sélecteur de démonstration, pas une vraie authentification. Choisis ton nom pour accéder à ton auto-diagnostic.');
+    var list = el('div', 'list');
+    DIRECTORS.forEach(function (d) {
+      d.crew.forEach(function (m) {
+        list.appendChild(personRow(m.name, el('span', 'note', 'Équipe de ' + d.name), null, function () {
+          currentDelegate = { member: m, director: d };
+          renderDelegateHome();
+        }));
+      });
+    });
+    card.appendChild(list);
+    showCard(delegateStage, card);
+  }
+
+  function changeDelegate() { currentDelegate = null; renderDelegatePicker(); }
+
+  function renderDelegateHome() {
+    if (isOnboarded(currentDelegate.member.id)) renderDelegateLocked();
+    else renderDelegateIntro();
+  }
+
+  function renderDelegateIntro() {
+    hideProgress(delegateProgress);
+    var card = el('div', 'card');
+    card.appendChild(who(currentDelegate.member.name, changeDelegate));
+    titleBlock(card, 'Mon auto-diagnostic',
+      '20 situations (5 axes de compétences, du niveau Débutant au niveau Expert), à faire une seule fois pour établir ton point de départ. Pour chaque situation, choisis la phrase qui décrit le mieux ta pratique actuelle. Ensuite, seul ton directeur régional pourra faire évoluer ces niveaux, après vos visites duo.');
+    var start = el('button', 'btn-primary', 'Commencer');
+    start.type = 'button';
+    start.addEventListener('click', startOnboarding);
+    card.appendChild(start);
+    showCard(delegateStage, card);
+  }
+
+  function startOnboarding() {
+    var steps = [];
+    SKILLS.forEach(function (s) {
+      onboardingQuestionsFor(s.key).forEach(function (q) { steps.push({ k: s.key, q: q }); });
+    });
+    var answers = {};
+    SKILLS.forEach(function (s) { answers[s.key] = []; });
+    setProgress(delegateProgress, steps.length);
+    fillProgress(delegateProgress, 0);
+
+    function show(i) {
+      var st = steps[i];
+      showCard(delegateStage, questionCard(st.k, st.q, true,
+        'Question ' + (i + 1) + ' sur ' + steps.length + ' · Choisis la phrase qui te ressemble le plus aujourd\'hui.',
+        function (levelIndex) {
+          answers[st.k].push(levelIndex);
+          fillProgress(delegateProgress, i + 1);
+          if (i + 1 < steps.length) show(i + 1); else finish();
+        }));
+    }
+    function finish() {
+      var levels = {};
+      SKILLS.forEach(function (s) { levels[s.key] = averageLevel(answers[s.key]); });
+      saveLevels(currentDelegate.member.id, levels);
+      setOnboarded(currentDelegate.member.id);
+      hideProgress(delegateProgress);
+      if (!reduceMotion) burstConfetti();
+      renderDelegateResult(levels, false);
+    }
+    show(0);
+  }
+
+  function renderDelegateResult(levels, locked) {
+    var card = el('div', 'card');
+    if (locked) card.appendChild(who(currentDelegate.member.name, changeDelegate));
+    var head = el('h2', 'card-title display');
+    if (locked) { head.innerHTML = ICONS.lock; head.firstChild.style.cssText = 'width:18px;height:18px;vertical-align:-3px;margin-right:8px;'; }
+    head.appendChild(document.createTextNode(locked ? 'Auto-diagnostic déjà complété' : 'Mon point de départ'));
+    card.appendChild(head);
+    card.appendChild(el('p', 'note pull', locked
+      ? "Tu as déjà fait ton auto-diagnostic. Cette vue est verrouillée : seul ton directeur régional peut désormais mettre à jour tes compétences, après vos visites duo. Voici ton niveau actuel."
+      : "Terminé, merci ! Voici ton point de départ sur chacun des 5 axes. Cette vue est maintenant verrouillée : seul ton directeur régional pourra la faire évoluer, après vos visites duo."));
+    card.appendChild(levelChips(levels));
+    card.appendChild(levelLegend());
+    if (locked) card.style.opacity = '0.8';
+    showCard(delegateStage, card);
+  }
+  function renderDelegateLocked() {
+    hideProgress(delegateProgress);
+    renderDelegateResult(getLevels(currentDelegate.member), true);
+  }
+
+  /* ============================================================
+     VUE DIRECTEUR RÉGIONAL — évaluation de son équipe après duo
+  ============================================================ */
+  var regionalStage = $('regionalStage');
+  var regionalProgress = $('regionalProgress');
+  var regionalTabs = $('regionalTabs');
+  var btnTabTeam = $('btnTabTeam');
+  var btnTabProfile = $('btnTabProfile');
+  // Simulateur de rôle — PAS une authentification : tout le code et les
+  // données restent visibles côté client. Une vraie restriction "un
+  // directeur régional ne voit que son équipe" nécessite un serveur.
+  var currentDirector = null;
+
+  btnTabTeam.addEventListener('click', function () { renderTeam(); });
+  btnTabProfile.addEventListener('click', function () { renderProfile(); });
+
+  function setTabs(active) {
+    regionalTabs.style.display = active ? 'flex' : 'none';
+    btnTabTeam.classList.toggle('active', active === 'team');
+    btnTabProfile.classList.toggle('active', active === 'profile');
+  }
+  function changeDirector() { currentDirector = null; renderDirectorPicker(); }
+
+  function renderDirectorPicker() {
+    hideProgress(regionalProgress);
+    setTabs(null);
+    var card = el('div', 'card');
+    titleBlock(card, 'Qui es-tu ?', "Sélecteur de démonstration, pas une vraie authentification : dans la vraie appli, chaque directeur régional se connecterait avec son propre compte et ne verrait que son équipe.");
+    var list = el('div', 'list');
+    DIRECTORS.forEach(function (d) {
+      list.appendChild(personRow(d.name, el('span', 'note', d.crew.length + ' délégués'), d.color, function () {
+        currentDirector = d;
+        renderTeam();
+      }));
+    });
+    card.appendChild(list);
+    showCard(regionalStage, card);
+  }
+
+  function renderTeam() {
+    hideProgress(regionalProgress);
+    setTabs('team');
+    var card = el('div', 'card');
+    card.appendChild(who(currentDirector.name, changeDirector));
+    titleBlock(card, 'Mon équipe', "Équipe d'exemple, à remplacer par l'import CSV côté admin. Choisis un délégué à évaluer après une visite duo.");
+    card.appendChild(levelLegend());
+    var list = el('div', 'list');
+    currentDirector.crew.forEach(function (m) {
+      var chips = levelChips(getLevels(m));
+      list.appendChild(personRow(m.name, chips, null, function () { startVisitForm(m); }));
+    });
+    card.appendChild(list);
+    showCard(regionalStage, card);
+  }
+
+  /* ----- Radar chart : niveau moyen de l'équipe sur chaque axe ----- */
+  function radarSVG(values) {
+    var cx = 190, cy = 150, R = 100, LR = 122, n = SKILLS.length;
+    function pt(i, r) {
+      var a = (Math.PI * 2 * i / n) - Math.PI / 2;
+      return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) };
+    }
+    function poly(r) {
+      var pts = [];
+      for (var i = 0; i < n; i++) { var p = pt(i, r); pts.push(p.x.toFixed(1) + ',' + p.y.toFixed(1)); }
+      return pts.join(' ');
+    }
+    var out = '';
+    for (var lvl = 1; lvl <= 4; lvl++) {
+      out += '<polygon points="' + poly((lvl / 4) * R) + '" fill="none" stroke="var(--border)" stroke-width="1"/>';
+    }
+    for (var i = 0; i < n; i++) {
+      var e = pt(i, R);
+      out += '<line x1="' + cx + '" y1="' + cy + '" x2="' + e.x.toFixed(1) + '" y2="' + e.y.toFixed(1) + '" stroke="var(--border)" stroke-width="1"/>';
+    }
+    for (var l2 = 1; l2 <= 4; l2++) {
+      out += '<text x="' + (cx + 4) + '" y="' + (cy - (l2 / 4) * R - 2).toFixed(1) + '" font-size="8" fill="var(--ink-soft)">' + l2 + '</text>';
+    }
+    var dataPts = [], dots = '';
+    for (var j = 0; j < n; j++) {
+      var v = Math.max(0, Math.min(3, values[j]));
+      var dp = pt(j, ((v + 1) / 4) * R);
+      dataPts.push(dp.x.toFixed(1) + ',' + dp.y.toFixed(1));
+      dots += '<circle cx="' + dp.x.toFixed(1) + '" cy="' + dp.y.toFixed(1) + '" r="3.4" fill="var(--accent)"/>';
+    }
+    out += '<polygon points="' + dataPts.join(' ') + '" fill="var(--accent)" fill-opacity="0.2" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"/>' + dots;
+    for (var k = 0; k < n; k++) {
+      var lp = pt(k, LR);
+      var anchor = lp.x < cx - 8 ? 'end' : (lp.x > cx + 8 ? 'start' : 'middle');
+      out += '<text x="' + lp.x.toFixed(1) + '" y="' + lp.y.toFixed(1) + '" text-anchor="' + anchor + '" dominant-baseline="middle" font-size="11" font-family="Poppins, Inter, sans-serif" font-weight="600" fill="var(--ink-soft)">' + SKILLS[k].short + '</text>';
+    }
+    return '<svg viewBox="0 0 380 275" width="100%" role="img" aria-label="Niveau moyen de l\'équipe sur les 5 axes" style="max-width:380px;display:block;margin:0 auto;">' + out + '</svg>';
+  }
+
+  function renderProfile() {
+    hideProgress(regionalProgress);
+    setTabs('profile');
+    var card = el('div', 'card');
+    card.appendChild(who(currentDirector.name, changeDirector));
+    titleBlock(card, "Profil d'équipe", "Niveau moyen de l'équipe de " + currentDirector.name + " sur chaque axe (1 = Débutant, 4 = Expert), calculé à partir des niveaux enregistrés.");
+    var values = crewAverages(currentDirector.crew);
+    var chart = el('div');
+    chart.innerHTML = radarSVG(values);
+    card.appendChild(chart);
+
+    var maxV = Math.max.apply(null, values), minV = Math.min.apply(null, values);
+    function strip(title, idx, v) {
+      var s = el('div', 'strip');
+      s.appendChild(el('strong', '', title));
+      s.appendChild(el('span', '', SKILLS[idx].label + ' : ' + fmtLevel(v) + ' / 4'));
+      return s;
+    }
+    if (maxV - minV < 0.05) {
+      var flat = el('div', 'strip');
+      flat.appendChild(el('strong', '', 'Profil homogène'));
+      flat.appendChild(el('span', '', 'Tous les axes sont au même niveau (' + fmtLevel(maxV) + ' / 4). Les écarts apparaîtront au fil des évaluations.'));
+      card.appendChild(flat);
+    } else {
+      card.appendChild(strip("Point fort de l'équipe", values.indexOf(maxV), maxV));
+      card.appendChild(strip('Axe de progression prioritaire', values.indexOf(minV), minV));
+    }
+    showCard(regionalStage, card);
+  }
+
+  /* ----- Évaluation après une visite duo ----- */
+  function startVisitForm(m) {
+    hideProgress(regionalProgress);
+    setTabs(null);
+    var visit = { date: '', centre: '', medecin: '' };
+    var card = el('div', 'card');
+    titleBlock(card, 'Fiche de visite duo', "Contexte de l'observation pour " + m.name + '.');
+    var form = el('div', 'form');
+    var cont = el('button', 'btn-primary', 'Continuer');
+    cont.type = 'button';
+    cont.disabled = true;
+
+    function field(labelText, type, key, placeholder) {
+      var label = el('label', 'field-label', labelText);
+      var input = el('input', 'field-input');
+      input.type = type;
+      if (placeholder) input.placeholder = placeholder;
+      input.addEventListener('input', function () {
+        visit[key] = input.value.trim();
+        cont.disabled = !(visit.date && visit.centre && visit.medecin);
+      });
+      label.appendChild(input);
+      form.appendChild(label);
+    }
+    field('Date de la visite duo', 'date', 'date');
+    field('Centre / lieu', 'text', 'centre', 'Ex : Cabinet Dr Martin, Lyon');
+    field('Médecin / interlocuteur observé', 'text', 'medecin', 'Ex : Dr Martin');
+
+    cont.addEventListener('click', function () { renderSkillPicker(m, visit); });
+    var back = el('button', 'btn-ghost', "← Retour à l'équipe");
+    back.type = 'button';
+    back.addEventListener('click', renderTeam);
+
+    card.appendChild(form);
+    card.appendChild(cont);
+    card.appendChild(back);
+    showCard(regionalStage, card);
+  }
+
+  function renderSkillPicker(m, visit) {
+    var selected = [];
+    var card = el('div', 'card');
+    titleBlock(card, 'Axes observés', "Sélectionne les axes que tu as pu observer chez " + m.name + ". 6 questions par axe, de plus en plus techniques à mesure que le niveau du délégué progresse.");
+    var list = el('div', 'list');
+    var start = el('button', 'btn-primary', "Commencer l'évaluation");
+    start.type = 'button';
+    start.disabled = true;
+
+    SKILLS.forEach(function (s) {
+      var row = el('button', 'pick-row');
+      row.type = 'button';
+      var icon = el('div', 'pick-icon');
+      icon.innerHTML = ICONS[s.icon];
+      var text = el('div', 'pick-text');
+      text.appendChild(el('strong', '', s.label));
+      text.appendChild(el('span', '', s.desc));
+      row.appendChild(icon);
+      row.appendChild(text);
+      row.addEventListener('click', function () {
+        var idx = selected.indexOf(s.key);
+        if (idx === -1) selected.push(s.key); else selected.splice(idx, 1);
+        row.classList.toggle('selected');
+        start.disabled = selected.length === 0;
+      });
+      list.appendChild(row);
+    });
+    start.addEventListener('click', function () {
+      var ordered = SKILLS.map(function (s) { return s.key; }).filter(function (k) { return selected.indexOf(k) !== -1; });
+      startEvaluation(m, visit, ordered);
+    });
+    var back = el('button', 'btn-ghost', '← Retour à la fiche de visite');
+    back.type = 'button';
+    back.addEventListener('click', function () { startVisitForm(m); });
+
+    card.appendChild(list);
+    card.appendChild(start);
+    card.appendChild(back);
+    showCard(regionalStage, card);
+  }
+
+  function startEvaluation(m, visit, skillKeys) {
+    var before = getLevels(m);
+    var steps = [];
+    skillKeys.forEach(function (k) {
+      questionsFor(k, before[k]).forEach(function (q) { steps.push({ k: k, q: q }); });
+    });
+    var answers = {};
+    skillKeys.forEach(function (k) { answers[k] = []; });
+    setProgress(regionalProgress, steps.length);
+    fillProgress(regionalProgress, 0);
+
+    function show(i) {
+      var st = steps[i];
+      showCard(regionalStage, questionCard(st.k, st.q, false,
+        'Évaluation de ' + m.name + ' · Question ' + (i + 1) + ' sur ' + steps.length + ' · Niveau ciblé : ' + LEVEL_LABEL[st.q.t],
+        function (levelIndex) {
+          answers[st.k].push(levelIndex);
+          fillProgress(regionalProgress, i + 1);
+          if (i + 1 < steps.length) show(i + 1); else finish();
+        }));
+    }
+    function finish() {
+      var after = Object.assign({}, before);
+      skillKeys.forEach(function (k) { after[k] = averageLevel(answers[k]); });
+      saveLevels(m.id, after);
+      hideProgress(regionalProgress);
+      renderRecap(m, visit, before, after, skillKeys);
+    }
+    show(0);
+  }
+
+  function renderRecap(m, visit, before, after, skillKeys) {
+    var card = el('div', 'card');
+    titleBlock(card, 'Évaluation enregistrée');
+    var info = el('div', 'strip');
+    info.appendChild(el('strong', '', m.name));
+    info.appendChild(el('span', '', visit.date + ' · ' + visit.centre));
+    info.appendChild(el('span', '', 'Interlocuteur observé : ' + visit.medecin));
+    card.appendChild(info);
+
+    skillKeys.forEach(function (k) {
+      var s = SKILL_BY_KEY[k];
+      var block = el('div', 'ladder');
+      var head = el('div', 'ladder-head');
+      var name = el('div', 'ladder-name');
+      name.innerHTML = ICONS[s.icon];
+      name.appendChild(el('strong', '', s.label));
+      var diff = after[k] - before[k];
+      var delta = el('span', 'delta' + (diff > 0 ? ' up' : ''), diff > 0 ? '+' + diff + ' niveau' + (diff > 1 ? 'x' : '') : (diff < 0 ? diff + ' niveau' + (diff < -1 ? 'x' : '') : 'stable'));
+      head.appendChild(name);
+      head.appendChild(delta);
+      var track = el('div', 'ladder-track');
+      for (var i = 0; i < 4; i++) {
+        var step = el('div', 'ladder-step');
+        if (i <= after[k] && i <= before[k]) step.classList.add('kept');
+        else if (i <= after[k]) step.classList.add('gained');
+        track.appendChild(step);
+      }
+      block.appendChild(head);
+      block.appendChild(track);
+      block.appendChild(el('div', 'ladder-label', LEVEL_LABEL[before[k]] + ' → ' + LEVEL_LABEL[after[k]]));
+      card.appendChild(block);
+    });
+
+    card.appendChild(el('p', 'note', "Niveaux calculés à partir d'une grille de démonstration (moyenne des 6 réponses par axe, arrondie). Grille et formulations à valider avec l'équipe formation avant toute utilisation réelle."));
+    var back = el('button', 'btn-ghost', "← Retour à l'équipe");
+    back.type = 'button';
+    back.addEventListener('click', renderTeam);
+    card.appendChild(back);
+    showCard(regionalStage, card);
+  }
+
+  /* ============================================================
+     VUE DIRECTEUR DES VENTES — progression des 5 équipes régionales
+  ============================================================ */
+  var salesStage = $('salesStage');
+
+  function renderSalesBoard() {
+    var card = el('div', 'card');
+    titleBlock(card, 'Mes équipes régionales', "Position de chacune de tes 5 équipes régionales sur les 5 axes : un repère par directeur régional, sur l'échelle des 4 niveaux de maîtrise. Données de démonstration.");
+
+    var legend = el('div', 'legend-row');
+    DIRECTORS.forEach(function (d) {
+      var item = el('span', 'legend-item');
+      var dot = el('i', 'legend-dot');
+      dot.style.background = d.color;
+      item.appendChild(dot);
+      item.appendChild(document.createTextNode(d.name));
+      legend.appendChild(item);
+    });
+    card.appendChild(legend);
+
+    var positions = [0, 100 / 3, 200 / 3, 100];
+    var averages = DIRECTORS.map(function (d) { return crewAverages(d.crew); });
+
+    SKILLS.forEach(function (s, si) {
+      var block = el('div', 'track-block');
+      var head = el('div', 'track-head');
+      head.innerHTML = ICONS[s.icon];
+      head.appendChild(el('strong', '', s.label));
+      block.appendChild(head);
+
+      var wrap = el('div', 'track-wrap');
+      var markers = el('div', 'track-markers');
+      positions.forEach(function (p, i) {
+        var mk = el('div', 'track-marker');
+        mk.style.left = p + '%';
+        mk.innerHTML = barsIcon(i + 1);
+        markers.appendChild(mk);
+      });
+      var line = el('div', 'track-line');
+
+      // Les repères proches sont décalés horizontalement pour rester lisibles.
+      var entries = DIRECTORS.map(function (d, di) {
+        return { d: d, pct: (Math.max(0, Math.min(3, averages[di][si])) / 3) * 100, v: averages[di][si] };
+      }).sort(function (a, b) { return a.pct - b.pct; });
+      var dotsLayer = el('div', 'track-dots');
+      var i = 0;
+      while (i < entries.length) {
+        var j = i;
+        while (j + 1 < entries.length && entries[j + 1].pct - entries[i].pct < 7) j++;
+        var size = j - i + 1;
+        for (var k = i; k <= j; k++) {
+          var e = entries[k];
+          var dot = el('div', 'track-dot', initialsOf(e.d.name));
+          dot.style.left = 'calc(' + e.pct + '% + ' + ((k - i) - (size - 1) / 2) * 17 + 'px)';
+          dot.style.background = e.d.color;
+          dot.title = e.d.name + ' : ' + fmtLevel(e.v) + ' / 4';
+          dotsLayer.appendChild(dot);
+        }
+        i = j + 1;
+      }
+
+      var labels = el('div', 'track-labels');
+      positions.forEach(function (p, li) {
+        var lb = el('span', 'track-label', LEVEL_LABEL[li]);
+        lb.style.left = p + '%';
+        labels.appendChild(lb);
+      });
+
+      wrap.appendChild(markers);
+      wrap.appendChild(line);
+      wrap.appendChild(dotsLayer);
+      wrap.appendChild(labels);
+      block.appendChild(wrap);
+      card.appendChild(block);
+    });
+    showCard(salesStage, card);
+  }
+
+  /* ============================================================
+     VUE RESSOURCES — repères théoriques par axe
+     Repères généraux issus de la littérature sur la vente et la
+     communication, rédigés pour la démo. Ils ne reprennent pas le
+     référentiel interne, qui reste la référence à y substituer.
+  ============================================================ */
+  var RESOURCES = {
+    planning: {
+      essence: "Préparer une visite, ce n'est pas préparer ce que l'on va dire, c'est décider ce que le client fera différemment après l'échange. L'objectif se formule donc en comportement observable du client, pas en activité du délégué.",
+      principles: [
+        "Partir du comportement attendu : une action précise, observable, à la portée du client (par exemple revoir sa façon de suivre un profil de patients, ou accepter un échange de suivi avec son équipe).",
+        "Situer le client : où en est son comportement aujourd'hui, et quel est le prochain pas réaliste. Une visite fait faire un pas, pas dix.",
+        "Identifier les freins et les motivations : habitudes, doutes, contraintes d'organisation d'un côté ; bénéfice pour les patients, gain de temps, preuves de l'autre.",
+        "Choisir peu de messages et de supports, uniquement ceux qui répondent au frein principal.",
+        "Prévoir des scénarios selon les réactions probables, et décider à l'avance de l'engagement demandé en fin de visite."
+      ],
+      levels: [
+        "Prépare du contenu à présenter, sans objectif défini.",
+        "Fixe un objectif d'activité (nombre de messages, de documents laissés).",
+        "Formule l'objectif en comportement attendu du client et anticipe ses freins.",
+        "Planifie une séquence de visites avec un comportement cible intermédiaire à chaque étape, et ajuste ses hypothèses."
+      ],
+      avoid: "« Présenter les nouvelles données au Dr Martin. »",
+      prefer: "« À la fin de la visite, le Dr Martin accepte de revoir avec son équipe sa façon de suivre ce profil de patients, et fixe une date pour en reparler. »",
+      ask: [
+        "Quel comportement précis du client est-ce que je vise ?",
+        "Où en est-il aujourd'hui ?",
+        "Quel est son frein principal ?",
+        "Quel engagement vais-je demander à la fin ?"
+      ],
+      pitfalls: [
+        "Un objectif qui décrit ce que le délégué fait (présenter, montrer) au lieu de ce que le client fera.",
+        "Un objectif trop large pour une seule visite.",
+        "Le même plan pour tous les clients."
+      ],
+      models: [
+        "Modèle des stades de changement (Prochaska et DiClemente) : pré-contemplation, contemplation, préparation, action, maintien. Utile pour calibrer l'ambition d'une visite.",
+        "Courbe d'adoption de l'innovation (Rogers) : innovateurs, adopteurs précoces, majorité précoce, majorité tardive, retardataires. Utile pour adapter le message au profil du client."
+      ]
+    },
+    hiq: {
+      essence: "Une question à fort impact fait réfléchir le client sur sa propre pratique et l'amène à formuler lui-même l'intérêt de changer. Elle ouvre le dialogue au lieu de simplement collecter une information.",
+      principles: [
+        "Privilégier les questions ouvertes (« comment », « qu'est-ce qui », « dans quelle situation ») pour explorer ; réserver les questions fermées à la confirmation et à la conclusion.",
+        "Aller de la situation vers les conséquences : décrire la pratique actuelle, repérer une difficulté, explorer ce qu'elle implique, puis laisser le client exprimer le bénéfice d'un changement.",
+        "Poser une question à la fois, puis écouter. Accepter le silence : il laisse au client le temps de réfléchir.",
+        "Rebondir sur la réponse précédente : la meilleure question suivante se trouve dans ce que le client vient de dire.",
+        "Préparer deux ou trois questions clés avant la visite, reliées au comportement visé et à l'hypothèse sur le frein."
+      ],
+      levels: [
+        "Pose surtout des questions fermées et parle la plupart du temps.",
+        "Pose des questions ouvertes, mais générales et toujours dans le même ordre.",
+        "Adapte ses questions au profil du client et relance quand la réponse est évasive.",
+        "Construit chaque question à partir de la réponse précédente et amène le client à tirer lui-même sa conclusion."
+      ],
+      avoid: "« Êtes-vous satisfait de votre prise en charge actuelle ? »",
+      prefer: "« Comment gérez-vous aujourd'hui ces patients ? », puis « Qu'est-ce que cela change pour eux au quotidien ? », puis « Qu'aimeriez-vous pouvoir faire différemment ? »",
+      ask: [
+        "Quelle est ma première question ouverte ?",
+        "Quelle hypothèse mes questions testent-elles ?",
+        "Que ferai-je si la réponse est évasive ?"
+      ],
+      pitfalls: [
+        "Enchaîner les questions comme un interrogatoire.",
+        "Poser une question orientée dont la réponse est suggérée.",
+        "Poser une question puis y répondre soi-même."
+      ],
+      models: [
+        "Questions SPIN (Neil Rackham) : Situation, Problème, Implication, Besoin de solution.",
+        "Entretien motivationnel (Miller et Rollnick) : questions ouvertes, valorisation, reformulations et résumés (OARS)."
+      ]
+    },
+    exchange: {
+      essence: "Apporter la bonne information, au bon moment, sous une forme que le client comprend et retient. Moins d'informations, mais reliées à ce que le client vient d'exprimer.",
+      principles: [
+        "Écouter avant d'informer : l'information vient après le besoin exprimé. Un schéma simple : demander, informer, puis demander ce que le client en retient.",
+        "Un message principal, formulable en une phrase que le client peut répéter, relié à un bénéfice pour ses patients ou sa pratique.",
+        "Structurer : l'essentiel d'abord, la preuve ensuite, le détail seulement à la demande.",
+        "Rendre mémorable : un exemple concret ou une courte histoire en trois temps (situation, enjeu, résolution), proche de la pratique du client.",
+        "Vérifier la compréhension : demander au client de reformuler ce qu'il retient.",
+        "Rester dans le cadre réglementaire : n'avancer que des informations validées et conformes aux règles applicables ; pour une question hors périmètre ou sans certitude, s'engager à revenir avec une réponse fiable par les circuits internes appropriés."
+      ],
+      levels: [
+        "Présente toutes les informations disponibles, dans l'ordre du support.",
+        "Explique correctement, mais avec beaucoup de détails et sans lien avec ce que dit le client.",
+        "Sélectionne les informations utiles, les relie à une situation vécue par le client et utilise un exemple concret.",
+        "Choisit peu d'informations, au moment précis où le besoin s'exprime, et fait reformuler le message par le client."
+      ],
+      avoid: "Enchaîner les diapositives dans l'ordre du support, sans pause.",
+      prefer: "« Vous m'avez dit manquer de temps pour réévaluer ces patients. Une donnée répond précisément à cela. Qu'en retenez-vous pour votre pratique ? »",
+      ask: [
+        "Quel est mon message principal, en une phrase ?",
+        "À quel besoin exprimé répond-il ?",
+        "Quel exemple concret le rend mémorable ?"
+      ],
+      pitfalls: [
+        "Tout dire, au risque de ne rien faire retenir.",
+        "Utiliser un jargon que le client ne partage pas.",
+        "Improviser une réponse sans certitude qu'elle soit exacte."
+      ],
+      models: [
+        "Demander, informer, demander (Ask-Tell-Ask), proche du schéma « Elicit-Provide-Elicit » de l'entretien motivationnel.",
+        "Structure narrative en trois temps : situation, enjeu, résolution."
+      ]
+    },
+    commitment: {
+      essence: "Transformer un bon échange en action concrète du client. Un engagement est précis (quoi), daté (quand) et accepté explicitement par le client.",
+      principles: [
+        "Demander explicitement : sans demande, il n'y a pas d'engagement.",
+        "Proportionner la demande au niveau d'adoption du client : une petite action réelle vaut mieux qu'un accord de principe.",
+        "Relier la demande à ce que le client a lui-même exprimé (besoin, bénéfice).",
+        "Traiter l'hésitation : explorer la réserve avant de reformuler, puis proposer au besoin un engagement plus petit mais réaliste.",
+        "Sécuriser : reformuler l'engagement, le confirmer par écrit avec la date et prévoir un point d'étape."
+      ],
+      levels: [
+        "Quitte le client sans conclure ou sans proposer de suite.",
+        "Propose une suite vague (« on se revoit bientôt »).",
+        "Propose une prochaine étape précise et datée, reliée à l'objectif de la visite.",
+        "Obtient un engagement explicite, traite les réserves, confirme par écrit et prépare la visite suivante."
+      ],
+      avoid: "« Je vous laisse y réfléchir, on se tient au courant. »",
+      prefer: "« Seriez-vous d'accord pour que nous reprenions ce cas avec votre équipe le [date] ? Je vous envoie un récapitulatif dès aujourd'hui. »",
+      ask: [
+        "Quelle action précise et datée vais-je demander ?",
+        "Que ferai-je si le client hésite ?",
+        "Comment vais-je confirmer l'engagement ?"
+      ],
+      pitfalls: [
+        "Une demande floue ou formulée en s'excusant.",
+        "Répéter la même demande en insistant face à une réserve.",
+        "Prendre un « pourquoi pas » pour un accord.",
+        "Ne faire aucun suivi de l'engagement."
+      ],
+      models: [
+        "Principe d'engagement et de cohérence (Cialdini) : les personnes tendent à agir en accord avec ce qu'elles ont elles-mêmes exprimé. À utiliser pour aider le client à agir, jamais pour faire pression.",
+        "Engagements progressifs : enchaîner de petites actions concrètes plutôt qu'un seul grand pas."
+      ]
+    },
+    postcall: {
+      essence: "Après la visite, mesurer ce qui a changé chez le client par rapport à l'objectif, comprendre pourquoi, et décider de la prochaine action. C'est ce qui fait de chaque visite un apprentissage.",
+      principles: [
+        "Comparer le résultat à l'objectif : le comportement visé a-t-il été observé ?",
+        "Chercher les causes : qu'est-ce qui a fait la différence (une question, un message, le moment choisi) ?",
+        "Retenir une réussite et un axe de progrès précis, plutôt qu'un bilan général.",
+        "Préparer la suite : nouvel objectif, questions et message ajustés à la réaction du client.",
+        "Documenter de façon exploitable : comportement observé, engagement obtenu, prochaine étape.",
+        "Partager et solliciter des retours (collègues, directeur régional), puis les transformer en actions planifiées."
+      ],
+      levels: [
+        "Passe à la visite suivante sans prendre de recul.",
+        "Rédige un compte rendu des faits, sans analyse de l'impact.",
+        "Compare le résultat à l'objectif et identifie une réussite et un axe de progrès.",
+        "Analyse les causes, ajuste son plan, mesure ses progrès dans la durée et partage ses enseignements."
+      ],
+      avoid: "« La visite s'est bien passée, le client était sympathique. »",
+      prefer: "« Objectif : le client accepte un suivi avec son équipe. Résultat : accord de principe, sans date. Ce qui a joué : ma question sur les conséquences. À ajuster : demander la date en fin d'échange. »",
+      ask: [
+        "Qu'est-ce qui a changé chez le client par rapport à mon objectif ?",
+        "Qu'est-ce qui a fait la différence ?",
+        "Quelle sera ma prochaine action ?"
+      ],
+      pitfalls: [
+        "Juger la visite à l'ambiance plutôt qu'au résultat.",
+        "Un compte rendu purement administratif.",
+        "Repartir du même plan à la visite suivante."
+      ],
+      models: [
+        "Cycle d'apprentissage de Kolb : expérience, observation réflexive, conceptualisation, expérimentation.",
+        "Trois questions rapides : qu'est-ce qui a bien fonctionné ? Qu'est-ce qui aurait pu être encore mieux ? Que ferai-je différemment la prochaine fois ?"
+      ]
+    }
+  };
+
+  function listBlock(tag, items) {
+    var list = el(tag);
+    items.forEach(function (t) { list.appendChild(el('li', '', t)); });
+    return list;
+  }
+  function resSection(title, node) {
+    var wrap = el('div');
+    wrap.appendChild(el('h3', '', title));
+    wrap.appendChild(node);
+    return wrap;
+  }
+
+  function renderResources() {
+    var stage = $('resourcesStage');
+    var card = el('div', 'card');
+    titleBlock(card, 'Ressources', "Repères théoriques sur les 5 axes de compétences : l'essentiel, les principes clés, ce que l'on observe à chaque niveau, des exemples, et des questions à se poser.");
+    card.appendChild(el('p', 'note', "Repères généraux issus de la littérature sur la vente et la communication, à remplacer ou compléter par le référentiel interne de formation."));
+
+    var list = el('div', 'list');
+    SKILLS.forEach(function (s) {
+      var r = RESOURCES[s.key];
+      var d = el('details', 'res');
+      var sum = el('summary');
+      var icon = el('div', 'pick-icon');
+      icon.innerHTML = ICONS[s.icon];
+      var text = el('div', 'pick-text');
+      text.appendChild(el('strong', '', s.label));
+      text.appendChild(el('span', '', s.desc));
+      sum.appendChild(icon);
+      sum.appendChild(text);
+      d.appendChild(sum);
+
+      var body = el('div', 'res-body');
+      body.appendChild(resSection("L'essentiel", el('p', '', r.essence)));
+      body.appendChild(resSection('Principes clés', listBlock('ol', r.principles)));
+
+      var levels = el('div', 'list');
+      levels.style.gap = '8px';
+      r.levels.forEach(function (txt, i) {
+        var row = el('div', 'lvl-row');
+        row.appendChild(el('span', 'chip lvl-' + i, LEVEL_LABEL[i]));
+        row.appendChild(el('span', '', txt));
+        levels.appendChild(row);
+      });
+      body.appendChild(resSection('Ce que l\'on observe à chaque niveau', levels));
+
+      var quotes = el('div', 'quotes');
+      var q1 = el('div', 'quote avoid');
+      q1.appendChild(el('small', '', 'À éviter'));
+      q1.appendChild(document.createTextNode(r.avoid));
+      var q2 = el('div', 'quote prefer');
+      q2.appendChild(el('small', '', 'À privilégier'));
+      q2.appendChild(document.createTextNode(r.prefer));
+      quotes.appendChild(q1);
+      quotes.appendChild(q2);
+      body.appendChild(resSection('Exemple', quotes));
+
+      body.appendChild(resSection('Questions à se poser', listBlock('ul', r.ask)));
+      body.appendChild(resSection('Pièges fréquents', listBlock('ul', r.pitfalls)));
+      body.appendChild(resSection('Pour aller plus loin', listBlock('ul', r.models)));
+
+      d.appendChild(body);
+      list.appendChild(d);
+    });
+    card.appendChild(list);
+    showCard(stage, card);
+  }
+
+  /* ============================================================
+     Réinitialisation de la démo (efface les données locales)
+  ============================================================ */
+  var demoFooter = $('demoFooter');
+  var footerTimer = null;
+
+  function resetDemo() {
+    try {
+      var keys = [];
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i);
+        if (k && k.indexOf('amgenSC_') === 0) keys.push(k);
+      }
+      keys.forEach(function (k) { localStorage.removeItem(k); });
+    } catch (e) {}
+    currentDelegate = null;
+    currentDirector = null;
+    hideProgress(delegateProgress);
+    hideProgress(regionalProgress);
+    setMode('delegate');
+    buildFooter('Démo réinitialisée : tous les délégués sont revenus au niveau Débutant.');
+    clearTimeout(footerTimer);
+    footerTimer = setTimeout(function () { buildFooter(); }, 5000);
+  }
+
+  function buildFooter(message) {
+    clearNode(demoFooter);
+    if (message) demoFooter.appendChild(el('span', 'note', message));
+    var armed = false;
+    var btn = el('button', 'link-btn', 'Réinitialiser la démo');
+    btn.type = 'button';
+    var cancel = el('button', 'link-btn', 'Annuler');
+    cancel.type = 'button';
+    cancel.hidden = true;
+    btn.addEventListener('click', function () {
+      if (!armed) {
+        armed = true;
+        demoFooter.insertBefore(el('span', 'note', 'Efface les auto-diagnostics et les évaluations enregistrés sur cet appareil.'), btn);
+        btn.textContent = 'Confirmer la réinitialisation';
+        cancel.hidden = false;
+        return;
+      }
+      resetDemo();
+    });
+    cancel.addEventListener('click', function () { buildFooter(); });
+    demoFooter.appendChild(btn);
+    demoFooter.appendChild(cancel);
+  }
+
+  /* ============================================================
+     Confettis (fin de l'auto-diagnostic)
+  ============================================================ */
+  var canvas = $('confetti');
+  var ctx = canvas.getContext('2d');
+  var particles = [];
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var running = false;
+
+  function resizeCanvas() {
+    canvas.width = Math.round(window.innerWidth * dpr);
+    canvas.height = Math.round(window.innerHeight * dpr);
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  var COLORS = ['#0063C3', '#00BCE4', '#C98A12', '#2C6B3F'];
+  function burstConfetti() {
+    var cx = window.innerWidth / 2, cy = window.innerHeight / 3;
+    for (var i = 0; i < 70; i++) {
+      particles.push({
+        x: cx, y: cy,
+        vx: (Math.random() - 0.5) * 10, vy: Math.random() * -8 - 2, g: 0.28,
+        size: Math.random() * 5 + 3, color: COLORS[Math.floor(Math.random() * COLORS.length)],
+        rot: Math.random() * Math.PI, vr: (Math.random() - 0.5) * 0.3, life: 80
+      });
+    }
+    if (!running) { running = true; requestAnimationFrame(tick); }
+  }
+  function tick() {
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.scale(dpr, dpr);
+    particles.forEach(function (p) {
+      p.x += p.vx; p.y += p.vy; p.vy += p.g; p.rot += p.vr; p.life--;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.globalAlpha = Math.max(p.life / 80, 0);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+      ctx.restore();
+    });
+    particles = particles.filter(function (p) { return p.life > 0; });
+    if (particles.length) requestAnimationFrame(tick);
+    else { running = false; ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, canvas.width, canvas.height); }
+  }
+
+  renderDelegatePicker();
+  buildFooter();
+})();
+</script>
+</body>
+</html>
